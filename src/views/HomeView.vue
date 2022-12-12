@@ -15,7 +15,7 @@
 
     <div class="edit">
       <h4>Edit Counter Title</h4>
-      <input type="text" v-model="counterData.title">
+      <input type="text" v-model="counterData.title" v-auto-focus>
     </div>
   </div>
 </template>
@@ -25,6 +25,7 @@
 
 //imports
 import { reactive, computed, watch, onMounted } from 'vue';
+import { vAutoFocus } from '@/directives/vAutoFocus';
 
 //counter non-reactive data
 const appTitle = 'My Basic Counter App'
@@ -69,6 +70,7 @@ const decreaseCounter = amount => {
 onMounted(() => {
   console.log('Do Stuff Related to counter');
 });
+
 
 </script>
 
