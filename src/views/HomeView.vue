@@ -1,38 +1,70 @@
 <template>
   <div class="home">
-
+    <h2>{{ appTitle }}</h2>
     <h3>{{ counterData.title }}:</h3>
 
     <div>
-      <button class="btn" @click="decreaseCounter">-</button>
+      <button class="btn" @click="decreaseCounter(2)">-2</button>
+      <button class="btn" @click="decreaseCounter(1)">-</button>
       <span class="counter">{{ counterData.count }}</span>
-      <button class="btn" @click="increaseCounter">+</button>
+      <button class="btn" @click="increaseCounter(1)">+</button>
+      <button class="btn" @click="increaseCounter(2)">+2</button>
     </div>
 
-      <div class="edit">
-        <h4>Edit Counter Title</h4>
-        <input type="text" v-model="counterData.title">
-      </div>
+    <p>This counter is {{ oddOrEven }}</p>
+
+    <div class="edit">
+      <h4>Edit Counter Title</h4>
+      <input type="text" v-model="counterData.title">
+    </div>
   </div>
 </template>
 
 <!-- COMPOSITION API WITH SCRIPT SETUP PATTERN (RECOMMENDED)------------------------ -->
 <script setup>
-import { ref, reactive } from 'vue';
+import { reactive, computed, watch, onBeforeUpdate, onUpdated} from 'vue';
 
-//all code for counter
+//counter non-reactive data
+const appTitle = 'My Basic Counter App'
+
+//all reactive counter data as a reactive object
 const counterData = reactive({
   count: 0,
   title: 'My Counter'
 })
 
-const increaseCounter = () => {
-  counterData.count++;
+//Watchers for counter data
+watch(() => counterData.count, (newCount, oldCount) => {
+  if (newCount === 20) {
+    alert('ITS NOW 20!!!!');
+  }
+})
+
+//Counter Computed Properties
+const oddOrEven = computed(() => {
+  if (counterData.count % 2 === 0) {
+    return 'Even';
+  }
+  return 'Odd';
+})
+
+// Counter methods
+const increaseCounter = amount => {
+  console.log(amount);
+  counterData.count += amount;
 }
 
-const decreaseCounter = () => {
-  counterData.count--;
+const decreaseCounter = amount => {
+  counterData.count -= amount;
 }
+
+// Hooks
+onBeforeUpdate(() => {
+  console.log('onBeforeUpdate')
+});
+onUpdated(() => {
+  console.log('onUpdated')
+})
 
 </script>
 
@@ -93,7 +125,8 @@ export default {
 .counter {
   font-size: 40px;
   margin: 10px;
-},
+}
+
 .edit {
   margin-top: 60px;
 }
