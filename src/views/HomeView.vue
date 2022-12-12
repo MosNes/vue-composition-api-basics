@@ -22,10 +22,17 @@
 
 <!-- COMPOSITION API WITH SCRIPT SETUP PATTERN (RECOMMENDED)------------------------ -->
 <script setup>
-import { reactive, computed, watch, onBeforeUpdate, onUpdated} from 'vue';
+
+//imports
+import { reactive, computed, watch, onMounted } from 'vue';
 
 //counter non-reactive data
 const appTitle = 'My Basic Counter App'
+
+//do stuff related to app title
+onMounted(() => {
+  console.log('Do Stuff Related to app title');
+});
 
 //all reactive counter data as a reactive object
 const counterData = reactive({
@@ -59,12 +66,9 @@ const decreaseCounter = amount => {
 }
 
 // Hooks
-onBeforeUpdate(() => {
-  console.log('onBeforeUpdate')
+onMounted(() => {
+  console.log('Do Stuff Related to counter');
 });
-onUpdated(() => {
-  console.log('onUpdated')
-})
 
 </script>
 
