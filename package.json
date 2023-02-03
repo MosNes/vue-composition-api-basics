@@ -1,5 +1,5 @@
 {
-  "name": " vue-composition-api-basics",
+  "name": "vue-composition-api-basics",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,8 @@
   "dependencies": {
     "pinia": "^2.0.28",
     "vue": "^3.2.45",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.1.6",
+    "vuetify": "^3.1.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",

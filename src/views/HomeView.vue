@@ -4,6 +4,21 @@
     <h3>{{ counterData.title }}:</h3>
 
     <div>
+      <v-progress-linear
+        v-model="counterData.count"
+        color="red"
+        :max="counterData.maxValue"
+        height="25"
+        reverse
+      ></v-progress-linear>
+    </div>
+    <div>
+      <div>Set Max Value</div>
+      <div>
+        <input type="number" v-model="counterData.maxValue" class="text-center">
+      </div>
+    </div>
+    <div>
       <button class="btn" @click="decreaseCounter(2)">-2</button>
       <button class="btn" @click="decreaseCounter(1)">-</button>
       <span class="counter">{{ counterData.count }}</span>
@@ -38,6 +53,7 @@ onMounted(() => {
 //all reactive counter data as a reactive object
 const counterData = reactive({
   count: 0,
+  maxValue: 20,
   title: 'My Counter'
 })
 
